@@ -1,5 +1,4 @@
 public class Autor {
-    //Atributo de instancia
     private int id;
     private String nombre;
     private String aPaterno;
@@ -49,6 +48,10 @@ public class Autor {
         this.aMaterno = aMaterno;
     }
 
+    public String getNombreCompleto(){
+        return this.nombre + " " + this.aPaterno + " " + this.aMaterno;
+    }
+
     public String getCiudad() {
         return this.ciudad;
     }
@@ -56,5 +59,4 @@ public class Autor {
     public void setCiudad(String ciudad){
         this.ciudad = ciudad;
     }
-
 }
