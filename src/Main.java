@@ -389,32 +389,37 @@ public class Main {
         genero = rc.nextLine();
         trm.print("Ingresa el id del editorial: ");
         int idEditorial = rc.nextInt();
-        editorial = findEditorial(idEditorial); // Obtener la editorial por su ID
+        editorial = findEditorial(idEditorial);
 
-        // Agregar autores al libro
-        int op;
-        do {
-            trm.println("---- Autores -----");
-            trm.println("1.- Agregar Autor");
-            trm.println("2.- Finalizar");
-            op = rc.nextInt();
-            if (op == 1) {
-                trm.print("Ingrese el ID del autor: ");
-                int idAutor = rc.nextInt();
-                Autor autor = findAutor(idAutor); // Obtener el autor por su ID
-                if (autor != null) {
-                    autores.add(autor);
-                    trm.println("Autor agregado al libro.");
-                } else {
-                    trm.println("No se encontró ningún autor con ese ID.");
+        if (editorial != null) {
+            int op;
+            do {
+                trm.println("---- Autores -----");
+                trm.println("1.- Agregar Autor");
+                trm.println("2.- Finalizar");
+                op = rc.nextInt();
+                if (op == 1) {
+                    trm.print("Ingrese el ID del autor: ");
+                    int idAutor = rc.nextInt();
+                    Autor autor = findAutor(idAutor); // Obtener el autor por su ID
+                    if (autor != null) {
+                        autores.add(autor);
+                        trm.println("Autor agregado al libro.");
+                    } else {
+                        trm.println("No se encontró ningún autor con ese ID.");
+                    }
                 }
-            }
-        } while (op != 2);
-
-        trm.println(" --------------------------------------");
+            } while (op != 2);
+        } else {
+            trm.println("--------------------------");
+            trm.println(" El editorial no existe!! ");
+            trm.println("--------------------------");
+            return null;
+        }
 
         return new Libro(isbn, titulo, edicion, genero, editorial, autores);
     }
+
 
 
     public static Libro findLibro() {
